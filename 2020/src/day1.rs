@@ -44,7 +44,7 @@ fn part2(expenses: &[u32]) -> u32 {
                     return x * y * z
                 }
             }
-            target = target + y
+            target = target + y;
         }
     }
     0
