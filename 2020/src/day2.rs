@@ -13,11 +13,11 @@ fn part1(passwords: &[String]) -> u32 {
     let mut valid_passwords: u32 = 0;
     for x in passwords.iter() {
         let cap = re.captures(x).unwrap();
-        let min = &cap[1].parse::<usize>().unwrap();
-        let max = &cap[2].parse::<usize>().unwrap();
-        let c = &cap[3];
-        let pw = &cap[4];
-        let count = pw.matches(c).count();
+        let min: usize = cap[1].parse().unwrap();
+        let max: usize = cap[2].parse().unwrap();
+        let character = &cap[3];
+        let password = &cap[4];
+        let count = password.matches(character).count();
         if &count >= &min && &count <= &max {
             valid_passwords = &valid_passwords + 1;
         }
@@ -34,13 +34,13 @@ fn part2(passwords: &[String]) -> u32 {
         let cap = re.captures(x).unwrap();
         let first_index: usize = cap[1].parse().unwrap();
         let second_index: usize = cap[2].parse().unwrap();
-        let character = &cap[3].parse::<char>().unwrap();
+        let character: char = cap[3].parse().unwrap();
         let password = &cap[4];
         let mut count = 0;
-        if password.as_bytes()[first_index - 1] as char == *character {
+        if password.as_bytes()[first_index - 1] as char == character {
             count = &count + 1;
         }
-        if password.as_bytes()[second_index - 1] as char == *character {
+        if password.as_bytes()[second_index - 1] as char == character {
             count = &count + 1;
         }
         if count == 1 {
